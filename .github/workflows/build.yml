@@ -35,6 +35,21 @@ jobs:
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v2
 
+      - name: Diagnose Windows SDK / UAP platforms available
+        shell: pwsh
+        run: |
+          Write-Host "=== Installed UAP platforms ==="
+          $uapRoot = 'C:\Program Files (x86)\Windows Kits\10\Platforms\UAP'
+          if (Test-Path $uapRoot) { Get-ChildItem $uapRoot | Select-Object Name } else { Write-Host "NO UAP folder at $uapRoot" }
+          Write-Host "=== UnionMetadata ==="
+          $um = 'C:\Program Files (x86)\Windows Kits\10\UnionMetadata'
+          if (Test-Path $um) { Get-ChildItem $um | Select-Object Name } else { Write-Host "NO UnionMetadata" }
+          Write-Host "=== References ==="
+          $r = 'C:\Program Files (x86)\Windows Kits\10\References'
+          if (Test-Path $r) { Get-ChildItem $r | Select-Object Name -First 30 } else { Write-Host "NO References" }
+          Write-Host "=== .NET SDKs ==="
+          dotnet --list-sdks
+
       - name: Generate placeholder visual assets
         shell: pwsh
         run: ./build/Generate-PlaceholderAssets.ps1
