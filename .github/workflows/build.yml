@@ -7,11 +7,6 @@ on:
     branches: [main]
   workflow_dispatch:
 
-env:
-  # Opt into Node.js 24 for all JS-based actions (v20 is being removed
-  # from runners in Sep 2026 and warns on every run until then).
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
-
 jobs:
   build:
     runs-on: windows-2022
@@ -27,18 +22,18 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup .NET 8
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
         with:
           dotnet-version: 8.0.x
 
       - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v2
+        uses: microsoft/setup-msbuild@v3
 
       - name: Setup NuGet
-        uses: NuGet/setup-nuget@v2
+        uses: NuGet/setup-nuget@v4
 
       - name: Generate placeholder visual assets
         shell: pwsh
@@ -94,7 +89,7 @@ jobs:
             Select-Object FullName, Length
 
       - name: Upload MSIX artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: GHelperXboxBar-${{ matrix.platform }}
           path: |
