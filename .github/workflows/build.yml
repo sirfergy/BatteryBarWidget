@@ -7,6 +7,11 @@ on:
     branches: [main]
   workflow_dispatch:
 
+env:
+  # Opt into Node.js 24 for all JS-based actions (v20 is being removed
+  # from runners in Sep 2026 and warns on every run until then).
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 jobs:
   build:
     runs-on: windows-2022
