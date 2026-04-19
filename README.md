@@ -53,7 +53,9 @@ hook receives it and flips the profile.
 ## Building via GitHub Actions (no local toolchain required)
 
 The repo ships a `build-msix` workflow (`.github/workflows/build.yml`) that runs
-on `windows-latest` (which already has VS 2022 Build Tools + UWP + MSIX SDKs
+on `windows-2022` (pinned — `windows-latest` was upgraded to Server 2025 and
+no longer ships a UAP-capable Windows 10 SDK). The runner already has
+VS 2022 Build Tools + UWP + MSIX SDKs
 pre-installed). It:
 
 1. Generates placeholder visual assets (`build/Generate-PlaceholderAssets.ps1`).
