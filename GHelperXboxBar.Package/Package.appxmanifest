@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+  xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+  IgnorableNamespaces="uap uap3 uap5 mp rescap desktop">
+
+  <Identity
+    Name="GHelperXboxBar"
+    Publisher="CN=GHelperXboxBar"
+    Version="1.0.0.0" />
+
+  <mp:PhoneIdentity PhoneProductId="6a1b1e3e-0000-0000-0000-0000ghelperxb" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+
+  <Properties>
+    <DisplayName>G-Helper Profiles</DisplayName>
+    <PublisherDisplayName>GHelperXboxBar</PublisherDisplayName>
+    <Logo>Images\StoreLogo.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.19041.0" MaxVersionTested="10.0.22621.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+
+  <Applications>
+    <Application Id="App"
+                 Executable="GHelperXboxBar.exe"
+                 EntryPoint="GHelperXboxBar.App">
+      <uap:VisualElements
+        DisplayName="G-Helper Profiles"
+        Description="Switch G-Helper performance profiles from Xbox Game Bar"
+        Square150x150Logo="Images\Square150x150Logo.png"
+        Square44x44Logo="Images\Square44x44Logo.png"
+        BackgroundColor="#1F1F1F"
+        AppListEntry="none">
+        <uap:DefaultTile Square71x71Logo="Images\SmallTile.png"
+                         Wide310x150Logo="Images\Wide310x150Logo.png"
+                         Square310x310Logo="Images\LargeTile.png" />
+        <uap:SplashScreen Image="Images\SplashScreen.png" BackgroundColor="#1F1F1F" />
+      </uap:VisualElements>
+
+      <Extensions>
+        <!-- Xbox Game Bar widget declaration -->
+        <uap3:Extension Category="windows.appExtension">
+          <uap3:AppExtension
+            Name="com.microsoft.xboxgamebar.widget"
+            Id="GHelperProfilesWidget"
+            PublicFolder="Public"
+            DisplayName="G-Helper Profiles"
+            Description="Switch G-Helper performance profiles (Silent, Balanced, Turbo, Custom, XGM) without leaving your game.">
+            <uap3:Properties>
+              <XboxGameBarWidget
+                xmlns="http://schemas.microsoft.com/appx/manifest/xboxgamebarwidget/windows10">
+                <DisplayName>G-Helper Profiles</DisplayName>
+                <Description>Switch G-Helper performance profiles from Game Bar.</Description>
+                <Tags>G-Helper;ASUS;ROG;Performance;Profiles</Tags>
+                <SupportedViewSizes>
+                  <ViewSize>Default</ViewSize>
+                  <ViewSize>Narrow</ViewSize>
+                </SupportedViewSizes>
+                <DefaultView>
+                  <Width>240</Width>
+                  <MinHeight>260</MinHeight>
+                  <MaxHeight>420</MaxHeight>
+                  <Resizable>true</Resizable>
+                </DefaultView>
+                <NarrowView>
+                  <Width>180</Width>
+                  <MinHeight>260</MinHeight>
+                  <MaxHeight>420</MaxHeight>
+                  <Resizable>true</Resizable>
+                </NarrowView>
+              </XboxGameBarWidget>
+            </uap3:Properties>
+          </uap3:AppExtension>
+        </uap3:Extension>
+
+        <!-- Desktop FullTrust helper that actually performs SendInput -->
+        <desktop:Extension Category="windows.fullTrustProcess"
+                          Executable="GHelperHotkey\GHelperHotkey.exe" />
+      </Extensions>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+  </Capabilities>
+</Package>

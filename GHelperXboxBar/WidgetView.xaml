@@ -1,0 +1,65 @@
+<Page
+    x:Class="GHelperXboxBar.WidgetView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markupCompatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource BgBrush}">
+
+    <Page.Resources>
+        <Style x:Key="ProfileButtonStyle" TargetType="Button">
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Padding" Value="12,10" />
+            <Setter Property="Margin" Value="0,0,0,6" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Background" Value="#2C2C2C" />
+            <Setter Property="Foreground" Value="#F0F0F0" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+    </Page.Resources>
+
+    <Grid Padding="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="G-Helper Profile"
+                   FontSize="16"
+                   FontWeight="SemiBold"
+                   Foreground="#F0F0F0"
+                   Margin="0,0,0,10" />
+
+        <StackPanel Grid.Row="1">
+            <Button Style="{StaticResource ProfileButtonStyle}" Content="🌙  Silent"          Tag="2"   Click="OnProfileClick" />
+            <Button Style="{StaticResource ProfileButtonStyle}" Content="⚖  Balanced"        Tag="0"   Click="OnProfileClick" />
+            <Button Style="{StaticResource ProfileButtonStyle}" Content="🚀  Turbo"           Tag="1"   Click="OnProfileClick" />
+            <Button Style="{StaticResource ProfileButtonStyle}" Content="★  Custom 1"        Tag="3"   Click="OnProfileClick" />
+            <Button Style="{StaticResource ProfileButtonStyle}" Content="★  Custom 2"        Tag="4"   Click="OnProfileClick" />
+            <Button Style="{StaticResource ProfileButtonStyle}" Content="🎮  Toggle XGM (eGPU)" Tag="xgm" Click="OnProfileClick" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0,8,0,0">
+            <TextBlock x:Name="StatusText"
+                       VerticalAlignment="Center"
+                       Margin="0,0,8,0"
+                       FontSize="11"
+                       Foreground="#A0A0A0" />
+            <Button x:Name="RefreshButton"
+                    Click="OnRefreshClick"
+                    Content="⟳"
+                    ToolTipService.ToolTip="Reload hotkey config"
+                    Background="Transparent"
+                    Foreground="#A0A0A0"
+                    BorderThickness="0"
+                    Padding="6,2" />
+        </StackPanel>
+    </Grid>
+</Page>
