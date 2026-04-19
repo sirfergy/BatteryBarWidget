@@ -19,11 +19,11 @@
     <WarningLevel>4</WarningLevel>
     <AppxPackage>false</AppxPackage>
     <GenerateAppxPackageOnBuild>false</GenerateAppxPackageOnBuild>
-    <!-- The runFullTrust capability warning (APPX1701) is emitted against the UWP
+    <!-- The runFullTrust capability warning (APPX0006) is emitted against the UWP
          csproj because it shares the wapproj's manifest to satisfy APPX1501.
          The wapproj is what actually produces the sideload/store package, so
          this advisory is a false positive here. -->
-    <MSBuildWarningsAsMessages>$(MSBuildWarningsAsMessages);APPX1701</MSBuildWarningsAsMessages>
+    <MSBuildWarningsAsMessages>$(MSBuildWarningsAsMessages);APPX0006</MSBuildWarningsAsMessages>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <ContainsStartupTask>false</ContainsStartupTask>
     <EntryPointProjectUniqueName>$(MSBuildProjectFullPath)</EntryPointProjectUniqueName>

@@ -19,9 +19,9 @@
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <EntryPointProjectUniqueName>..\GHelperXboxBar\GHelperXboxBar.csproj</EntryPointProjectUniqueName>
     <!-- Suppress the "use a Windows Application Packaging Project" advisory
-         (APPX1701 / linkid 871803). This IS a Windows Application Packaging
+         (APPX0006 / linkid 871803). This IS a Windows Application Packaging
          Project; the check is a false positive for wapproj-produced MSIX. -->
-    <MSBuildWarningsAsMessages>$(MSBuildWarningsAsMessages);APPX1701</MSBuildWarningsAsMessages>
+    <MSBuildWarningsAsMessages>$(MSBuildWarningsAsMessages);APPX0006</MSBuildWarningsAsMessages>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
