@@ -14,7 +14,7 @@
     Publisher="CN=GHelperXboxBar"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="6a1b1e3e-0000-0000-0000-0000ghelperxb" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="6a1b1e3e-1234-5678-9abc-def012345678" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>G-Helper Profiles</DisplayName>
