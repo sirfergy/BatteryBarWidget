@@ -17,7 +17,7 @@
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x64|arm64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
-    <EntryPointProjectUniqueName>..\GHelperXboxBar\GHelperXboxBar.csproj</EntryPointProjectUniqueName>
+    <EntryPointProjectUniqueName>..\BatteryBarWidget\BatteryBarWidget.csproj</EntryPointProjectUniqueName>
     <!-- Suppress the "use a Windows Application Packaging Project" advisory
          (APPX0006 / linkid 871803). This IS a Windows Application Packaging
          Project; the check is a false positive for wapproj-produced MSIX. -->
@@ -33,7 +33,7 @@
     <Content Include="Public\**\*" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GHelperXboxBar\GHelperXboxBar.csproj">
+    <ProjectReference Include="..\BatteryBarWidget\BatteryBarWidget.csproj">
       <SkipGetTargetFrameworkProperties>True</SkipGetTargetFrameworkProperties>
     </ProjectReference>
   </ItemGroup>

@@ -8,15 +8,15 @@
   IgnorableNamespaces="uap uap3 uap5 mp">
 
   <Identity
-    Name="GHelperXboxBar"
-    Publisher="CN=GHelperXboxBar"
+    Name="BatteryBarWidget"
+    Publisher="CN=BatteryBarWidget"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="6a1b1e3e-1234-5678-9abc-def012345678" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>G-Helper Battery</DisplayName>
-    <PublisherDisplayName>GHelperXboxBar</PublisherDisplayName>
+    <DisplayName>Battery Bar</DisplayName>
+    <PublisherDisplayName>BatteryBarWidget</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
 
@@ -30,10 +30,10 @@
 
   <Applications>
     <Application Id="App"
-                 Executable="GHelperXboxBar.exe"
-                 EntryPoint="GHelperXboxBar.App">
+                 Executable="BatteryBarWidget.exe"
+                 EntryPoint="BatteryBarWidget.App">
       <uap:VisualElements
-        DisplayName="G-Helper Battery"
+        DisplayName="Battery Bar"
         Description="Live battery percentage and charge/discharge rate in Xbox Game Bar"
         Square150x150Logo="Images\Square150x150Logo.png"
         Square44x44Logo="Images\Square44x44Logo.png"
@@ -50,9 +50,9 @@
         <uap3:Extension Category="windows.appExtension">
           <uap3:AppExtension
             Name="microsoft.gameBarUIExtension"
-            Id="GHelperBatteryWidget"
+            Id="BatteryBarWidget"
             PublicFolder="Public"
-            DisplayName="G-Helper Battery"
+            DisplayName="Battery Bar"
             Description="Live battery percentage and charge/discharge rate, pinnable on the Xbox Game Bar home bar.">
             <uap3:Properties>
               <GameBarWidget Type="Standard">

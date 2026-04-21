@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace GHelperXboxBar
+namespace BatteryBarWidget
 {
     public sealed partial class WidgetView : Page
     {

@@ -1,24 +1,23 @@
-# G-Helper Battery — Xbox Game Bar Widget
+# Battery Bar — Xbox Game Bar Widget
 
 A tiny Xbox Game Bar widget that shows live **battery percentage** and
 **charge / discharge rate in watts** — pin it to the Game Bar home bar and keep
 an eye on your power draw while gaming without leaving the game.
 
 ```
-  ┌─────────────────┐
-  │                 │
-  │      87%        │
-  │     battery     │
-  │                 │
-  │    ▼ 24.3 W     │
-  │   discharging   │
-  │                 │
-  └─────────────────┘
+                87%   24.3 W
 ```
+
+- **Green** text → charging
+- **Red** text → discharging
+- **Gray "idle"** → plugged in and balanced (|rate| < 50 mW)
+
+Minimum size is 90×24, default 120×32, font is a compact 12pt — it's designed
+to blend into the Game Bar chrome as an always-on-top readout, not dominate it.
 
 ## Install
 
-1. Grab the latest `GHelperXboxBar-x64` (or `-ARM64`) artifact from the
+1. Grab the latest `BatteryBarWidget-x64` (or `-ARM64`) artifact from the
    [Actions](../../actions) tab.
 2. Trust the signing cert:
    ```powershell
@@ -26,9 +25,9 @@ an eye on your power draw while gaming without leaving the game.
    ```
 3. Install the MSIX:
    ```powershell
-   Add-AppxPackage -Path .\GHelperXboxBar.Package_*.msix
+   Add-AppxPackage -Path .\BatteryBarWidget.Package_*.msix
    ```
-4. Press **Win+G**, open the widget menu (≡), find **G-Helper Battery**, pin it.
+4. Press **Win+G**, open the widget menu (≡), find **Battery Bar**, pin it.
 
 ## How it works
 
@@ -43,20 +42,17 @@ Values shown:
 No full-trust helper, no `SendInput`, no `runFullTrust` capability — so the
 package works under Windows 11's Smart App Control.
 
-Despite the name "G-Helper", this widget doesn't actually depend on G-Helper;
-it reads the OS battery report, so it works on any Windows 10/11 laptop.
-
 ## Project layout
 
 ```
-GHelperXboxBar.sln
-├── GHelperXboxBar/           UWP (C# / XAML) — the widget UI
-└── GHelperXboxBar.Package/   Windows App Packaging project (MSIX)
-    └── Public/               REQUIRED folder referenced by the widget
-                              AppExtension's PublicFolder attribute — if it's
-                              missing from the produced MSIX, Windows silently
-                              drops the extension registration and the widget
-                              never appears in Game Bar.
+BatteryBarWidget.sln
+├── BatteryBarWidget/            UWP (C# / XAML) — the widget UI
+└── BatteryBarWidget.Package/    Windows App Packaging project (MSIX)
+    └── Public/                  REQUIRED folder referenced by the widget
+                                 AppExtension's PublicFolder attribute — if
+                                 missing from the produced MSIX, Windows
+                                 silently drops the extension registration
+                                 and the widget never appears in Game Bar.
 ```
 
 The manifest uses the modern `microsoft.gameBarUIExtension` contract with the
@@ -81,15 +77,13 @@ artifacts. Push → grab artifact → install.
 
 ```powershell
 ./build/Generate-PlaceholderAssets.ps1
-msbuild GHelperXboxBar.sln /t:Restore,Build `
+msbuild BatteryBarWidget.sln /t:Restore,Build `
   /p:Configuration=Release /p:Platform=x64 `
   /p:UapAppxPackageBuildMode=SideloadOnly `
   /p:AppxPackageSigningEnabled=true `
-  /p:PackageCertificateKeyFile=GHelperXboxBar.Package\GHelperXboxBar.Package_TemporaryKey.pfx
+  /p:PackageCertificateKeyFile=BatteryBarWidget.Package\BatteryBarWidget.Package_TemporaryKey.pfx
 ```
 
 ## Credits
 
-- Xbox Game Bar Widget SDK sample by Microsoft — widget extension reference.
-- [G-Helper](https://github.com/seerge/g-helper) by @seerge — the ROG power
-  tool that inspired this widget.
+Xbox Game Bar Widget SDK sample by Microsoft — widget extension reference.

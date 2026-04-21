@@ -2,7 +2,7 @@
 # build without real artwork checked in. Replace with real icons before
 # shipping.
 param(
-    [string]$OutputDir = (Join-Path $PSScriptRoot '..\GHelperXboxBar.Package\Images')
+    [string]$OutputDir = (Join-Path $PSScriptRoot '..\BatteryBarWidget.Package\Images')
 )
 
 $ErrorActionPreference = 'Stop'

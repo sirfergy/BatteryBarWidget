@@ -3,7 +3,7 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace GHelperXboxBar
+namespace BatteryBarWidget
 {
     public sealed partial class App : Application
     {

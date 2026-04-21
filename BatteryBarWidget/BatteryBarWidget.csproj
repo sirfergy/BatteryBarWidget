@@ -7,8 +7,8 @@
     <ProjectGuid>{22222222-2222-2222-2222-222222222222}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GHelperXboxBar</RootNamespace>
-    <AssemblyName>GHelperXboxBar</AssemblyName>
+    <RootNamespace>BatteryBarWidget</RootNamespace>
+    <AssemblyName>BatteryBarWidget</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
@@ -97,7 +97,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <AppxManifest Include="..\GHelperXboxBar.Package\Package.appxmanifest">
+    <AppxManifest Include="..\BatteryBarWidget.Package\Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
   </ItemGroup>
