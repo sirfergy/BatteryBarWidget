@@ -7,70 +7,45 @@
     mc:Ignorable="d"
     Background="{ThemeResource BgBrush}">
 
-    <Page.Resources>
-        <Style x:Key="ProfileButtonStyle" TargetType="Button">
-            <Setter Property="HorizontalAlignment" Value="Stretch" />
-            <Setter Property="HorizontalContentAlignment" Value="Left" />
-            <Setter Property="Padding" Value="12,10" />
-            <Setter Property="Margin" Value="0,0,0,6" />
-            <Setter Property="FontSize" Value="14" />
-            <Setter Property="Background" Value="#2C2C2C" />
-            <Setter Property="Foreground" Value="#F0F0F0" />
-            <Setter Property="BorderThickness" Value="0" />
-        </Style>
-    </Page.Resources>
-
-    <Grid Padding="12">
+    <Grid Padding="14">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Margin="0,0,0,10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0"
-                       Text="G-Helper Profile"
-                       FontSize="16"
+        <StackPanel Grid.Row="0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+            <TextBlock x:Name="PercentText"
+                       Text="—"
+                       FontSize="44"
                        FontWeight="SemiBold"
-                       Foreground="#F0F0F0" />
-            <TextBlock x:Name="BatteryText"
-                       Grid.Column="1"
-                       Text=""
+                       Foreground="#F0F0F0"
+                       HorizontalAlignment="Center"
+                       LineHeight="48" />
+            <TextBlock Text="battery"
                        FontSize="11"
-                       Foreground="#A0A0A0"
-                       VerticalAlignment="Center" />
-        </Grid>
-
-        <StackPanel Grid.Row="1">
-            <Button Style="{StaticResource ProfileButtonStyle}" Content="🌙  Silent"          Tag="2"   Click="OnProfileClick" />
-            <Button Style="{StaticResource ProfileButtonStyle}" Content="⚖  Balanced"        Tag="0"   Click="OnProfileClick" />
-            <Button Style="{StaticResource ProfileButtonStyle}" Content="🚀  Turbo"           Tag="1"   Click="OnProfileClick" />
-            <Button Style="{StaticResource ProfileButtonStyle}" Content="★  Custom 1"        Tag="3"   Click="OnProfileClick" />
-            <Button Style="{StaticResource ProfileButtonStyle}" Content="★  Custom 2"        Tag="4"   Click="OnProfileClick" />
-            <Button Style="{StaticResource ProfileButtonStyle}" Content="🎮  Toggle XGM (eGPU)" Tag="xgm" Click="OnProfileClick" />
+                       Foreground="#808080"
+                       HorizontalAlignment="Center"
+                       Margin="0,-2,0,0" />
         </StackPanel>
 
-        <StackPanel Grid.Row="2"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Right"
-                    Margin="0,8,0,0">
-            <TextBlock x:Name="StatusText"
-                       VerticalAlignment="Center"
-                       Margin="0,0,8,0"
+        <StackPanel Grid.Row="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+            <TextBlock x:Name="RateText"
+                       Text="—"
+                       FontSize="32"
+                       FontWeight="SemiBold"
+                       Foreground="#A0A0A0"
+                       HorizontalAlignment="Center"
+                       LineHeight="36" />
+            <TextBlock x:Name="RateLabel"
+                       Text="idle"
                        FontSize="11"
-                       Foreground="#A0A0A0" />
-            <Button x:Name="RefreshButton"
-                    Click="OnRefreshClick"
-                    Content="⟳"
-                    ToolTipService.ToolTip="Reload hotkey config"
-                    Background="Transparent"
-                    Foreground="#A0A0A0"
-                    BorderThickness="0"
-                    Padding="6,2" />
+                       Foreground="#808080"
+                       HorizontalAlignment="Center"
+                       Margin="0,-2,0,0" />
         </StackPanel>
     </Grid>
 </Page>

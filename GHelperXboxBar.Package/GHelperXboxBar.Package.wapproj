@@ -36,10 +36,6 @@
     <ProjectReference Include="..\GHelperXboxBar\GHelperXboxBar.csproj">
       <SkipGetTargetFrameworkProperties>True</SkipGetTargetFrameworkProperties>
     </ProjectReference>
-    <ProjectReference Include="..\GHelperHotkey\GHelperHotkey.csproj">
-      <SkipGetTargetFrameworkProperties>True</SkipGetTargetFrameworkProperties>
-      <PublishProfile>win-$(Platform).pubxml</PublishProfile>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
 </Project>

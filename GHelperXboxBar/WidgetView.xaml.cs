@@ -1,9 +1,6 @@
 using System;
-using System.Threading.Tasks;
 using Microsoft.Gaming.XboxGameBar;
-using Windows.ApplicationModel;
 using Windows.Devices.Power;
-using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -15,7 +12,7 @@ namespace GHelperXboxBar
     public sealed partial class WidgetView : Page
     {
         private XboxGameBarWidget? _widget;
-        private DispatcherTimer? _batteryTimer;
+        private DispatcherTimer? _timer;
         private readonly Battery _battery = Battery.AggregateBattery;
 
         private static readonly SolidColorBrush DischargeBrush =
@@ -36,25 +33,24 @@ namespace GHelperXboxBar
         {
             base.OnNavigatedTo(e);
             _widget = e.Parameter as XboxGameBarWidget;
-            StatusText.Text = "Ready";
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             _battery.ReportUpdated += OnBatteryReportUpdated;
-            _batteryTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(2) };
-            _batteryTimer.Tick += (_, __) => UpdateBattery();
-            _batteryTimer.Start();
+            _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(2) };
+            _timer.Tick += (_, __) => UpdateBattery();
+            _timer.Start();
             UpdateBattery();
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
             _battery.ReportUpdated -= OnBatteryReportUpdated;
-            if (_batteryTimer != null)
+            if (_timer != null)
             {
-                _batteryTimer.Stop();
-                _batteryTimer = null;
+                _timer.Stop();
+                _timer = null;
             }
         }
 
@@ -72,74 +68,43 @@ namespace GHelperXboxBar
                 var remaining = report.RemainingCapacityInMilliwattHours;
                 var full = report.FullChargeCapacityInMilliwattHours;
 
-                string pct = (remaining.HasValue && full.HasValue && full.Value > 0)
-                    ? $"{(int)Math.Round(remaining.Value * 100.0 / full.Value)}%"
-                    : string.Empty;
-
-                if (!rateMw.HasValue || rateMw.Value == 0)
+                if (remaining.HasValue && full.HasValue && full.Value > 0)
                 {
-                    BatteryText.Foreground = IdleBrush;
-                    BatteryText.Text = string.IsNullOrEmpty(pct) ? "—" : pct;
+                    var pct = (int)Math.Round(remaining.Value * 100.0 / full.Value);
+                    PercentText.Text = $"{pct}%";
+                }
+                else
+                {
+                    PercentText.Text = "—";
+                }
+
+                if (!rateMw.HasValue || Math.Abs(rateMw.Value) < 50)
+                {
+                    RateText.Foreground = IdleBrush;
+                    RateText.Text = "0.0 W";
+                    RateLabel.Text = "idle";
                     return;
                 }
 
                 double watts = rateMw.Value / 1000.0;
                 if (watts > 0)
                 {
-                    BatteryText.Foreground = ChargeBrush;
-                    BatteryText.Text = string.IsNullOrEmpty(pct)
-                        ? $"▲ {watts:0.0} W"
-                        : $"{pct}  ▲ {watts:0.0} W";
+                    RateText.Foreground = ChargeBrush;
+                    RateText.Text = $"▲ {watts:0.0} W";
+                    RateLabel.Text = "charging";
                 }
                 else
                 {
-                    BatteryText.Foreground = DischargeBrush;
-                    BatteryText.Text = string.IsNullOrEmpty(pct)
-                        ? $"▼ {Math.Abs(watts):0.0} W"
-                        : $"{pct}  ▼ {Math.Abs(watts):0.0} W";
+                    RateText.Foreground = DischargeBrush;
+                    RateText.Text = $"▼ {Math.Abs(watts):0.0} W";
+                    RateLabel.Text = "discharging";
                 }
             }
             catch
             {
-                BatteryText.Text = string.Empty;
-            }
-        }
-
-        private async void OnProfileClick(object sender, RoutedEventArgs e)
-        {
-            if (sender is not Button btn || btn.Tag is null) return;
-            var tag = btn.Tag.ToString() ?? string.Empty;
-            await InvokeHotkeyAsync(tag, btn.Content?.ToString() ?? tag);
-        }
-
-        private async void OnRefreshClick(object sender, RoutedEventArgs e)
-        {
-            await InvokeHotkeyAsync("reload", "Reload config");
-        }
-
-        private async Task InvokeHotkeyAsync(string action, string label)
-        {
-            try
-            {
-                this.IsEnabled = false;
-                StatusText.Text = $"{label}…";
-
-                // Pass the requested action to the desktop extension via LocalSettings.
-                var settings = ApplicationData.Current.LocalSettings;
-                settings.Values["action"] = action;
-                settings.Values["timestamp"] = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-
-                await FullTrustProcessLauncher.LaunchFullTrustProcessForCurrentAppAsync();
-
-                StatusText.Text = $"{label} ✓";
-            }
-            catch (Exception ex)
-            {
-                StatusText.Text = "Error: " + ex.Message;
-            }
-            finally
-            {
-                this.IsEnabled = true;
+                PercentText.Text = "—";
+                RateText.Text = "—";
+                RateLabel.Text = "unavailable";
             }
         }
     }

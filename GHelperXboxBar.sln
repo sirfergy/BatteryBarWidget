@@ -7,8 +7,6 @@ Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "GHelperXboxBar.Package", "G
 EndProject
 Project("{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A}") = "GHelperXboxBar", "GHelperXboxBar\GHelperXboxBar.csproj", "{22222222-2222-2222-2222-222222222222}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GHelperHotkey", "GHelperHotkey\GHelperHotkey.csproj", "{33333333-3333-3333-3333-333333333333}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -37,13 +35,5 @@ Global
 		{22222222-2222-2222-2222-222222222222}.Release|x64.Build.0 = Release|x64
 		{22222222-2222-2222-2222-222222222222}.Release|ARM64.ActiveCfg = Release|ARM64
 		{22222222-2222-2222-2222-222222222222}.Release|ARM64.Build.0 = Release|ARM64
-		{33333333-3333-3333-3333-333333333333}.Debug|x64.ActiveCfg = Debug|x64
-		{33333333-3333-3333-3333-333333333333}.Debug|x64.Build.0 = Debug|x64
-		{33333333-3333-3333-3333-333333333333}.Debug|ARM64.ActiveCfg = Debug|ARM64
-		{33333333-3333-3333-3333-333333333333}.Debug|ARM64.Build.0 = Debug|ARM64
-		{33333333-3333-3333-3333-333333333333}.Release|x64.ActiveCfg = Release|x64
-		{33333333-3333-3333-3333-333333333333}.Release|x64.Build.0 = Release|x64
-		{33333333-3333-3333-3333-333333333333}.Release|ARM64.ActiveCfg = Release|ARM64
-		{33333333-3333-3333-3333-333333333333}.Release|ARM64.Build.0 = Release|ARM64
 	EndGlobalSection
 EndGlobal

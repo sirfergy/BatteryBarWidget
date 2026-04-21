@@ -5,9 +5,7 @@
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
   xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
-  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
-  IgnorableNamespaces="uap uap3 uap5 mp rescap desktop">
+  IgnorableNamespaces="uap uap3 uap5 mp">
 
   <Identity
     Name="GHelperXboxBar"
@@ -17,7 +15,7 @@
   <mp:PhoneIdentity PhoneProductId="6a1b1e3e-1234-5678-9abc-def012345678" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>G-Helper Profiles</DisplayName>
+    <DisplayName>G-Helper Battery</DisplayName>
     <PublisherDisplayName>GHelperXboxBar</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
@@ -35,8 +33,8 @@
                  Executable="GHelperXboxBar.exe"
                  EntryPoint="GHelperXboxBar.App">
       <uap:VisualElements
-        DisplayName="G-Helper Profiles"
-        Description="Switch G-Helper performance profiles from Xbox Game Bar"
+        DisplayName="G-Helper Battery"
+        Description="Live battery percentage and charge/discharge rate in Xbox Game Bar"
         Square150x150Logo="Images\Square150x150Logo.png"
         Square44x44Logo="Images\Square44x44Logo.png"
         BackgroundColor="#1F1F1F"
@@ -48,30 +46,25 @@
       </uap:VisualElements>
 
       <Extensions>
-        <!-- Xbox Game Bar widget declaration.
-             Uses the modern 'microsoft.gameBarUIExtension' contract and
-             <GameBarWidget> schema required by current Xbox Game Bar builds.
-             The legacy 'com.microsoft.xboxgamebar.widget' contract with the
-             <xbgbw:XboxGameBarWidget> schema registers with AppExtensionCatalog
-             but is no longer surfaced in Game Bar's widget menu. -->
+        <!-- Xbox Game Bar widget declaration (modern contract). -->
         <uap3:Extension Category="windows.appExtension">
           <uap3:AppExtension
             Name="microsoft.gameBarUIExtension"
-            Id="GHelperProfilesWidget"
+            Id="GHelperBatteryWidget"
             PublicFolder="Public"
-            DisplayName="G-Helper Profiles"
-            Description="Switch G-Helper performance profiles (Silent, Balanced, Turbo, Custom, XGM) without leaving your game.">
+            DisplayName="G-Helper Battery"
+            Description="Live battery percentage and charge/discharge rate, pinnable on the Xbox Game Bar home bar.">
             <uap3:Properties>
               <GameBarWidget Type="Standard">
                 <HomeMenuVisible>true</HomeMenuVisible>
                 <PinningSupported>true</PinningSupported>
                 <Window>
                   <Size>
-                    <Height>340</Height>
-                    <Width>240</Width>
-                    <MinHeight>260</MinHeight>
+                    <Height>180</Height>
+                    <Width>220</Width>
+                    <MinHeight>140</MinHeight>
                     <MinWidth>180</MinWidth>
-                    <MaxHeight>420</MaxHeight>
+                    <MaxHeight>260</MaxHeight>
                     <MaxWidth>320</MaxWidth>
                   </Size>
                   <ResizeSupported>
@@ -83,15 +76,7 @@
             </uap3:Properties>
           </uap3:AppExtension>
         </uap3:Extension>
-
-        <!-- Desktop FullTrust helper that actually performs SendInput -->
-        <desktop:Extension Category="windows.fullTrustProcess"
-                          Executable="GHelperHotkey\GHelperHotkey.exe" />
       </Extensions>
     </Application>
   </Applications>
-
-  <Capabilities>
-    <rescap:Capability Name="runFullTrust" />
-  </Capabilities>
 </Package>
