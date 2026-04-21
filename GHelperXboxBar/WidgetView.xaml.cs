@@ -81,7 +81,7 @@ namespace GHelperXboxBar
                 if (!rateMw.HasValue || Math.Abs(rateMw.Value) < 50)
                 {
                     RateText.Foreground = IdleBrush;
-                    RateText.Text = "— idle";
+                    RateText.Text = "idle";
                     return;
                 }
 
@@ -89,12 +89,12 @@ namespace GHelperXboxBar
                 if (watts > 0)
                 {
                     RateText.Foreground = ChargeBrush;
-                    RateText.Text = $"▲ {watts:0.0} W";
+                    RateText.Text = $"{watts:0.0} W";
                 }
                 else
                 {
                     RateText.Foreground = DischargeBrush;
-                    RateText.Text = $"▼ {Math.Abs(watts):0.0} W";
+                    RateText.Text = $"{Math.Abs(watts):0.0} W";
                 }
             }
             catch

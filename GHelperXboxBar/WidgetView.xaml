@@ -18,7 +18,7 @@
         <TextBlock x:Name="PercentText"
                    Grid.Column="0"
                    Text="—"
-                   FontSize="20"
+                   FontSize="14"
                    FontWeight="SemiBold"
                    Foreground="#F0F0F0"
                    VerticalAlignment="Center"
@@ -27,7 +27,7 @@
         <TextBlock x:Name="RateText"
                    Grid.Column="1"
                    Text="—"
-                   FontSize="16"
+                   FontSize="14"
                    FontWeight="SemiBold"
                    Foreground="#A0A0A0"
                    VerticalAlignment="Center" />
