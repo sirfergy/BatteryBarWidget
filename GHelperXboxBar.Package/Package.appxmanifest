@@ -7,8 +7,7 @@
   xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
   xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
-  xmlns:xbgbw="http://schemas.microsoft.com/appx/manifest/xboxgamebarwidget/windows10"
-  IgnorableNamespaces="uap uap3 uap5 mp rescap desktop xbgbw">
+  IgnorableNamespaces="uap uap3 uap5 mp rescap desktop">
 
   <Identity
     Name="GHelperXboxBar"
@@ -49,36 +48,38 @@
       </uap:VisualElements>
 
       <Extensions>
-        <!-- Xbox Game Bar widget declaration -->
+        <!-- Xbox Game Bar widget declaration.
+             Uses the modern 'microsoft.gameBarUIExtension' contract and
+             <GameBarWidget> schema required by current Xbox Game Bar builds.
+             The legacy 'com.microsoft.xboxgamebar.widget' contract with the
+             <xbgbw:XboxGameBarWidget> schema registers with AppExtensionCatalog
+             but is no longer surfaced in Game Bar's widget menu. -->
         <uap3:Extension Category="windows.appExtension">
           <uap3:AppExtension
-            Name="com.microsoft.xboxgamebar.widget"
+            Name="microsoft.gameBarUIExtension"
             Id="GHelperProfilesWidget"
             PublicFolder="Public"
             DisplayName="G-Helper Profiles"
             Description="Switch G-Helper performance profiles (Silent, Balanced, Turbo, Custom, XGM) without leaving your game.">
             <uap3:Properties>
-              <xbgbw:XboxGameBarWidget>
-                <xbgbw:DisplayName>G-Helper Profiles</xbgbw:DisplayName>
-                <xbgbw:Description>Switch G-Helper performance profiles from Game Bar.</xbgbw:Description>
-                <xbgbw:Tags>G-Helper;ASUS;ROG;Performance;Profiles</xbgbw:Tags>
-                <xbgbw:SupportedViewSizes>
-                  <xbgbw:ViewSize>Default</xbgbw:ViewSize>
-                  <xbgbw:ViewSize>Narrow</xbgbw:ViewSize>
-                </xbgbw:SupportedViewSizes>
-                <xbgbw:DefaultView>
-                  <xbgbw:Width>240</xbgbw:Width>
-                  <xbgbw:MinHeight>260</xbgbw:MinHeight>
-                  <xbgbw:MaxHeight>420</xbgbw:MaxHeight>
-                  <xbgbw:Resizable>true</xbgbw:Resizable>
-                </xbgbw:DefaultView>
-                <xbgbw:NarrowView>
-                  <xbgbw:Width>180</xbgbw:Width>
-                  <xbgbw:MinHeight>260</xbgbw:MinHeight>
-                  <xbgbw:MaxHeight>420</xbgbw:MaxHeight>
-                  <xbgbw:Resizable>true</xbgbw:Resizable>
-                </xbgbw:NarrowView>
-              </xbgbw:XboxGameBarWidget>
+              <GameBarWidget Type="Standard">
+                <HomeMenuVisible>true</HomeMenuVisible>
+                <PinningSupported>true</PinningSupported>
+                <Window>
+                  <Size>
+                    <Height>340</Height>
+                    <Width>240</Width>
+                    <MinHeight>260</MinHeight>
+                    <MinWidth>180</MinWidth>
+                    <MaxHeight>420</MaxHeight>
+                    <MaxWidth>320</MaxWidth>
+                  </Size>
+                  <ResizeSupported>
+                    <Horizontal>true</Horizontal>
+                    <Vertical>true</Vertical>
+                  </ResizeSupported>
+                </Window>
+              </GameBarWidget>
             </uap3:Properties>
           </uap3:AppExtension>
         </uap3:Extension>
