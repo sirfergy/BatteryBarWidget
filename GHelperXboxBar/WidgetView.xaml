@@ -5,47 +5,31 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource BgBrush}">
+    Background="Transparent">
 
-    <Grid Padding="14">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+    <Grid Padding="8,4"
+          HorizontalAlignment="Center"
+          VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center">
-            <TextBlock x:Name="PercentText"
-                       Text="—"
-                       FontSize="44"
-                       FontWeight="SemiBold"
-                       Foreground="#F0F0F0"
-                       HorizontalAlignment="Center"
-                       LineHeight="48" />
-            <TextBlock Text="battery"
-                       FontSize="11"
-                       Foreground="#808080"
-                       HorizontalAlignment="Center"
-                       Margin="0,-2,0,0" />
-        </StackPanel>
+        <TextBlock x:Name="PercentText"
+                   Grid.Column="0"
+                   Text="—"
+                   FontSize="20"
+                   FontWeight="SemiBold"
+                   Foreground="#F0F0F0"
+                   VerticalAlignment="Center"
+                   Margin="0,0,10,0" />
 
-        <StackPanel Grid.Row="1"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center">
-            <TextBlock x:Name="RateText"
-                       Text="—"
-                       FontSize="32"
-                       FontWeight="SemiBold"
-                       Foreground="#A0A0A0"
-                       HorizontalAlignment="Center"
-                       LineHeight="36" />
-            <TextBlock x:Name="RateLabel"
-                       Text="idle"
-                       FontSize="11"
-                       Foreground="#808080"
-                       HorizontalAlignment="Center"
-                       Margin="0,-2,0,0" />
-        </StackPanel>
+        <TextBlock x:Name="RateText"
+                   Grid.Column="1"
+                   Text="—"
+                   FontSize="16"
+                   FontWeight="SemiBold"
+                   Foreground="#A0A0A0"
+                   VerticalAlignment="Center" />
     </Grid>
 </Page>
